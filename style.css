@@ -125,10 +125,6 @@ a {
   margin-left: 3rem;
 }
 
-.price-box h2 {
-  padding: 1rem;
-}
-
 #features .feature div h2 {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
@@ -170,6 +166,10 @@ a {
 .price-box h3 {
   background-color: #ddd;
   font-size: 1.05rem;
+  padding: 1rem;
+}
+
+.price-box h2 {
   padding: 1rem;
 }
 
@@ -239,16 +239,16 @@ a {
     flex-direction: column;
   }
 
+  #pricing .price-box {
+    margin: 1rem;
+  }
+
   .price-box:first-child {
     margin-right: 0;
   }
 
   .price-box:last-child {
     margin-left: 0;
-  }
-
-  #pricing .price-box {
-    margin: 1rem;
   }
 
   #main-footer {
