@@ -21,7 +21,11 @@ const SetImage = () => {
         draggable: true,
         theme: "dark",
       };
-      const setProfilePicture = async () => {};
+      const setProfilePicture = async () => {
+        if(selectedAvatar === undefined){
+            toast.error('Please select an avatar', toastOptions);
+        }
+      };
 
       useEffect(() => {
         const fetchData = async () => {
@@ -40,6 +44,10 @@ const SetImage = () => {
 
   return (
     <div>
+    {
+        isLoading ? <Container>
+            <img src={ loader } alt="loader" className='loader' />
+        </Container> :  (
       <Container>
       <div className='title-container'>
         <h1>Pick avatar as your profile picture</h1>
@@ -54,9 +62,9 @@ const SetImage = () => {
             )
         }
      )}</div>
+      <button className='submit-btn' onClick ={setProfilePicture}> Set as profile picture </button>
       
-      
-       </Container>;
+       </Container>)};
       <ToastContainer />
     </div>
   );
@@ -96,6 +104,25 @@ width: 100nw;
             height: 6rem;
         }
     }
+    .selected {
+        border: 0.4rem solid #4e0eff;
+    }
 }
+.submit-btn {
+    background-color: #4e0eff;
+      color: #fff;
+      padding: 1rem 2rem;
+      border: none;
+      font-weigth: bold;
+      cursor: pointer;
+      border-radius: 0.4rem;
+      font-size: 1rem;
+      text-transform: uppercase;
+      transition: 0.5s ease-in-out;
+      &:hover {
+        background-color: #4e0eff;
+      }
+}
+
 `;
 
