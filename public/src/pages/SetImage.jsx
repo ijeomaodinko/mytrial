@@ -21,9 +21,29 @@ const SetImage = () => {
         draggable: true,
         theme: "dark",
       };
+
+      useEffect(aysnc ()=>{
+        if (!localStorage.getItem("chat-app-user")){
+            navigate("/login");
+        }
+      }, []);
+
       const setProfilePicture = async () => {
         if(selectedAvatar === undefined){
             toast.error('Please select an avatar', toastOptions);
+        } else {
+            const user = await JSON.parse(localStorage.getItem("chat-app-user"));
+            const { data } await axios.post(`${setAvatarRoute}/${user._id}`, {
+                image: avatars[selectedAvatar],
+            });
+            if(data.isSet){
+                user.isAvatarImageSet = true;
+                user.avatarImage = data.image;
+                localStorage.setItem("chat-app-user", JSON.stringfy(user));
+                navigate('/');
+            } else {
+                toast.error("Error setting avatar. Please try again", toastOptions);
+            }
         }
       };
 
