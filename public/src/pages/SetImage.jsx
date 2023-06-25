@@ -22,7 +22,7 @@ const SetImage = () => {
         theme: "dark",
       };
 
-      useEffect(aysnc ()=>{
+      useEffect(aysnc () => {
         if (!localStorage.getItem("chat-app-user")){
             navigate("/login");
         }
