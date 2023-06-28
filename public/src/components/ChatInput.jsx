@@ -55,6 +55,10 @@ align-items: center;
 background-color: #080ef1;
 padding: 0 2 rem;
 padding-bottom: 0.3rem;
+@media and screen (min-width: 720px) && (max-width: 1080px){
+    padding: 0 1rem;
+    gap: 1rem;
+}
 .button-container {
     display: flex;
     align-items: center;
@@ -105,7 +109,6 @@ padding-bottom: 0.3rem;
     background-color: #fffffff039;
     input {
         width: 90%;
-        height: 60%;
         background-color: transparent;
         color: white;
         border: none;
@@ -126,6 +129,12 @@ padding-bottom: 0.3rem;
         align-items: center;
         background-color: #9a86f3;
         border: none;
+    @media screen and (min-width: 720px) and (max-width: 1080px){
+        padding: 0.3rem 1rem;
+        svg {
+            font-size: 1rem;
+        }
+    }
         svg{
             font-size: 2rem;
             color: white;
