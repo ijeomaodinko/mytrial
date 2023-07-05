@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors"); 
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/userRoutes");
-const messageRoute = require("./routes/messagesRoute");
+const messageRoutes = require("./routes/messagesRoute");
 
 const app = express();
 
@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", userRoutes);
-app.use("/api/message", messageRoute);
+app.use("/api/message", messageRoutes);
 
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
@@ -29,13 +29,13 @@ const server = app.listen(process.env.PORT, () =>{
 });
 const io = socket(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "http://localhost:000",
         credentials: true,
     },
 });
 
 global.onlineUsers = new Map();
-is.on("connection", (socket) => {
+io.on("connection", (socket) => {
     global.chatSocket = socket;
     socket.on("add-user", (userId) => {
         onlineUsers.set(userId, socket.id);
@@ -43,7 +43,7 @@ is.on("connection", (socket) => {
     socket.on("send-msg", (data) => {
         const sendUserSocket = onlineUsers.get(data.to);
         if(sendUserSocket) {
-            socket.to(sendUserSocket).emit("msg-recieve, data.message");
+            socket.to(sendUserSocket).emit("msg-receive", data.message);
         }
     });
 });

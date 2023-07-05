@@ -1,5 +1,5 @@
 const User = require("../model/userModel");
-const brcypt = require("brcypt");
+const bcrypt = require("bcrypt");
 
 module.exports.register = async (req, res, next) => {
     try {
@@ -9,11 +9,13 @@ module.exports.register = async (req, res, next) => {
     return res.json({msg: "Username already used", status: false });
     const emailCheck = await User.findOne({ email });
     if (emailCheck) return res.json({msg: "Email already used", status: false });
-    const hashedPassword = await brcypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
+   
     const user = await User.create({
         email,
         username,
         password, hashedPassword,
+        confirmPassword, 
     });
     delete user.password;
     return res.json({status:true, user});

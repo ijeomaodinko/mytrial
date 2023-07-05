@@ -50,14 +50,16 @@ useEffect(() => {
       if(password!==confirmPassword){
         toast.error("password and confirm password should be same.", toastOptions 
         );
-        return false
+        return false;
       }else if (username.length < 3){
         toast.error("Username should be greater than 3 characters", toastOption);
+        return false;
       }else if (password.length < 8){
         toast.error("Password should be equal or greater than 8 characters", toastOptions);
         return false;
       }else if(email ===""){
         toast.error("email is required", toastOptions);
+        return false;
       }
       return true;
     };
@@ -79,7 +81,7 @@ useEffect(() => {
             onChange={(e) => handleChange(e)} />
             <input type='email' placeholder="Email"  name="email" onChange={(e) => handleChange(e)} />
             <input type='password' placeholder='Password' name='password' onChange={(e) => handleChange(e)} />
-            <input type='confirm password' placeholder='Confirm Password' name='confirm password' onChange={(e) => handleChange(e)} />
+            <input type='password' placeholder='Confirm Password' name='confirmPassword' onChange={(e) => handleChange(e)} />
        <button type="submit">Create User </button>
        <span>Already have a account ? <Link to = "/login"> Login </Link> 
        </span>      
